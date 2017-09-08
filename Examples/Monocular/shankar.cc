@@ -107,7 +107,8 @@ int main(int argc, char **argv)
             T = tframe-vTimestamps[ni-1];
 
         if(ttrack<T)
-            usleep((T-ttrack)*1e6);
+            /* usleep((T-ttrack)*1e6); */
+            usleep(0);
     }
 
     // Stop all threads
@@ -148,7 +149,7 @@ void LoadImages(const string &strImagePath, const string &strPathTimes,
             vstrImages.push_back(strImagePath + "/" + ss.str() + ".png");
             double t;
             ss >> t;
-            vTimeStamps.push_back(t/1e9);
+            vTimeStamps.push_back(t);
 
         }
     }
