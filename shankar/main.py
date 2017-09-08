@@ -11,9 +11,8 @@ def print_attrs(name, obj):
     for key, val in obj.attrs.iteritems():
         print("    %s: %s" % (key, val))
 
-
-data = h5py.File("cycles_high_7200.hdf5", "r")
-data.visititems(print_attrs)
+data = h5py.File("/media/shankar/data/Drive/GWU/research/asteroid_dumbbell/data/itokawa_landing/cycles_high_7200.hdf5", "r")
+# data.visititems(print_attrs)
 
 states = data['i_state']
 time = data['time']
@@ -26,9 +25,9 @@ plt.plot(states[:,2],'-b')
 R = np.matrix('1 0 0; 0 0 1; 0 -1 0')
 
 trajectory = np.loadtxt('KeyFrameTrajectory.txt')
+time = trajectory[:, 0]
 trajectory = trajectory[:, 1:4].T
 
-time = np.linspace(0, time[-1], trajectory.shape[1])
 trajectory = R * trajectory
 
 # scale trajectory
